@@ -3,18 +3,12 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "postCreateCommand": "bash -c 'if [[ $DISPLAY == *xquartz* ]]; then echo \"export DISPLAY=host.docker.internal:0\" >> /root/.bashrc; fi'",
   "privileged": true,
   "containerEnv": {
-    "DISPLAY": "${localEnv:DISPLAY}",
     "PYTHONPATH": "${containerWorkspaceFolder}",
     "force_color_prompt": "1"
   },
   "runArgs": [
-    "--volume=/tmp/.X11-unix:/tmp/.X11-unix",
-    "--volume=${localEnv:XAUTHORITY}:/root/.Xauthority",
-    "--volume=${localEnv:HOME}/.comma:/root/.comma",
-    "--volume=/tmp/comma_download_cache:/tmp/comma_download_cache",
     "--shm-size=1G"
   ],
   "features": {
